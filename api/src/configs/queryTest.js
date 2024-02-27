@@ -1,10 +1,10 @@
 const pool = require('../services/db');
 
 const SQLSTATEMENT = `
-    SELECT table_name 
-    FROM information_schema.tables
-    WHERE table_schema = 'neggardevelopment'
-    ORDER BY table_name;
+
+SELECT username, email FROM member
+WHERE username = 'John Doe' OR email = 'a@dabc.com';
+
 `;
 
 pool.query(SQLSTATEMENT, (error, results, fields) => {

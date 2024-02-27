@@ -20,7 +20,7 @@ const tokenAlgorithm = process.env.JWT_ALGORITHM;
 //////////////////////////////////////////////////////
 module.exports.generateToken = (req, res, next) => {
     const payload = {
-      userId: res.locals.userId,
+      memberId: res.locals.memberId,
       timestamp: new Date()
     };
   
@@ -46,9 +46,10 @@ module.exports.generateToken = (req, res, next) => {
 // MIDDLEWARE FUNCTION FOR SENDING JWT TOKEN
 //////////////////////////////////////////////////////
 module.exports.sendToken = (req, res, next) => {
+    res.cookie('authToken', res.locals.token, { httpOnly: true, secure: true, sameSite: 'Strict', maxAge: 604800000 });
+
     res.status(200).json({
-      message: res.locals.message,
-      token: res.locals.token,
+      message: res.locals.message
     });
   };
 
@@ -56,24 +57,19 @@ module.exports.sendToken = (req, res, next) => {
 // MIDDLEWARE FUNCTION FOR VERIFYING JWT TOKEN
 //////////////////////////////////////////////////////
 module.exports.verifyToken = (req, res, next) => {    
-    const authHeader = req.headers.authorization;
+    const token = req.cookies.authToken;
   
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!token || token === undefined) {
       return res.status(401).json({ error: 'No token provided. Please register an account or login.' });
-    }
-  
-    const token = authHeader.substring(7);
-  
-    if (!token) {
-      return res.status(401).json({ error: "No token provided. Please register an account or login." });
     }
   
     const callback = (err, decoded) => {
       if (err) {
+        res.clearCookie('authToken');
         return res.status(401).json({ error: "Invalid token. Please login again." });
       }
   
-      res.locals.userId = decoded.userId;
+      res.locals.memberId = decoded.memberId;
       res.locals.tokenTimestamp = decoded.timestamp;
   
       next();
@@ -81,13 +77,3 @@ module.exports.verifyToken = (req, res, next) => {
   
     jwt.verify(token, secretKey, callback);
   };
-
-//////////////////////////////////////////////////////
-// MIDDLEWARE FUNCTION TO ADD USER ID FROM RES.LOCALS TO REQ.BODY
-//////////////////////////////////////////////////////
-module.exports.addUserIdToReqBodyFromResLocals = (req, res, next) => {    
-
-    req.body.user_id = res.locals.userId;
-    next();
-
-};
