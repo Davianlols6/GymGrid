@@ -2,7 +2,7 @@
 
 ### POST /register
 
-This endpoint registers a user. The token is stored in the client's cookies.
+This endpoint registers a member. The token is stored in the client's cookies.
 
 **Example Request Body:**
 
@@ -29,7 +29,7 @@ Status Code: 200 Ok
 
 ### POST /login
 
-This endpoint login a user. The token is stored in the client's cookies.
+This endpoint login a member. The token is stored in the client's cookies.
 
 **Example Request Body:**
 
@@ -54,8 +54,25 @@ Status Code: 200 Ok
 
 ### POST /logout
 
-This endpoint logs an user out by deleting the token stored on the client's end.
+This endpoint logs an member out by deleting the token stored on the client's end.
 
 **Example Response:**
 
 Status Code: 204 No Content
+
+### GET /member/auth
+
+This endpoint displays the logged in member's info
+
+**Example Response:**
+
+Status Code: 200 Ok
+
+```json
+{
+    "member_id": 2,
+    "username": "test",
+    "email": "test@gmail.com",
+    "active_programme_id": null
+}
+```

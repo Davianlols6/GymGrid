@@ -6,4 +6,5 @@ const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
 router.get('/auth', jwtMiddleware.verifyToken, memberController.getMemberByAuthToken);
 
+
 module.exports = router;
