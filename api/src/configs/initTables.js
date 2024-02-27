@@ -1,6 +1,8 @@
 const pool = require('../services/db');
 
 const SQLSTATEMENT = `
+    CREATE SCHEMA IF NOT EXISTS neggardevelopment;
+
     DROP TABLE IF EXISTS "User";
     DROP TABLE IF EXISTS "WeightTracker";
     DROP TABLE IF EXISTS "Programme";
