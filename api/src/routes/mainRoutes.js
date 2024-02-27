@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+// const jwtMiddleware = require('../middlewares/jwtMiddleware');
+// const bcryptMiddleware = require('../middlewares/bcryptMiddleware');
+// const userController = require('../controllers/userController');
+
+// router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
+// router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
+
 // Define a route to set a cookie
 router.get('/set-cookie', (req, res) => {
     // Set a cookie named 'user' with the value 'john_doe'
