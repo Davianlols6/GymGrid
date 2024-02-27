@@ -33,6 +33,6 @@ router.get('/remove-cookie', (req, res) => {
   
     // Send a response
     res.send('Cookie has been removed');
-  });
+});
 
 module.exports = router;

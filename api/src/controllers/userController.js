@@ -1,7 +1,6 @@
 const model = require("../models/userModel.js");
 
-module.exports.checkUsernameOrEmailExist = (req, res, next) =>
-{
+module.exports.checkUsernameOrEmailExist = (req, res, next) => {
     const data = {
         username: req.body.username,
         email: req.body.email
