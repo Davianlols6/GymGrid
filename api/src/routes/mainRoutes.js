@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+const memberRoutes = require('../routes/memberRoutes');
+
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
 const bcryptMiddleware = require('../middlewares/bcryptMiddleware');
-const userController = require('../controllers/userController');
+const memberController = require('../controllers/memberController');
 
-router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
-router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
+router.post("/register", memberController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, memberController.register, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
+router.post("/login", memberController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.post("/logout", (req, res) => {res.clearCookie('authToken'); res.send('Cookie has been removed');});
+
+router.use("/member", memberRoutes);
 
 module.exports = router;

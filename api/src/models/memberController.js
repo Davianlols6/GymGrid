@@ -1,6 +1,6 @@
 const pool = require('../services/db');
 
-module.exports.selectUserByUsernameOrEmail = (data, callback) => {
+module.exports.selectMemberByUsernameOrEmail = (data, callback) => {
     const SQLSTATEMENT = `
         SELECT username, email FROM member
         WHERE username = '${data.username}' OR email = '${data.email}';
@@ -9,7 +9,6 @@ module.exports.selectUserByUsernameOrEmail = (data, callback) => {
     pool.query(SQLSTATEMENT, callback);
 }
 
-// Inserts single row into mysql
 module.exports.insertSingle = (data, callback) => {
     const SQLSTATMENT = `
         INSERT INTO member (username, email, password)
@@ -20,11 +19,19 @@ module.exports.insertSingle = (data, callback) => {
     pool.query(SQLSTATMENT, callback);
 }
 
-// Selects rows by provided username
 module.exports.selectByUsernameForLogin = (data, callback) => {
     const SQLSTATMENT = `
         SELECT member_id, password FROM member WHERE username = '${data.username}';
     `;
 
     pool.query(SQLSTATMENT, callback);
+}
+
+module.exports.selectMemberByAuthToken = (data, callback) => {
+    const SQLSTATEMENT = `
+        SELECT member_id, username, email, active_programme_id FROM member
+        WHERE member_id = ${data.member_id};
+    `;
+
+    pool.query(SQLSTATEMENT, callback);
 }
