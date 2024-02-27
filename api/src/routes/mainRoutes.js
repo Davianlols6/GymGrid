@@ -7,6 +7,6 @@ const userController = require('../controllers/userController');
 
 router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
-router.post("/logout", (req, res) => {res.clearCookie('authToken'); res.send('Cookie has been removed');});
+router.post("/logout", (req, res) => {res.clearCookie('authToken'); res.status(204).send();});
 
 module.exports = router;
