@@ -2,8 +2,8 @@ const pool = require('../services/db');
 
 const SQLSTATEMENT = `
 
-SELECT username, email FROM member
-WHERE username = 'John Doe' OR email = 'a@dabc.com';
+SELECT member_id, username, email, active_programme_id FROM member
+WHERE username = 'test4';
 
 `;
 

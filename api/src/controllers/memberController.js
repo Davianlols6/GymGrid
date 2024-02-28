@@ -15,7 +15,7 @@ module.exports.checkUsernameOrEmailExist = (req, res, next) => {
                 next();
             } else {
                 res.status(409).json({
-                    message: "Username or email already exists"
+                    error: "Username or email already exists"
                 });
             }
         }
@@ -26,7 +26,9 @@ module.exports.checkUsernameOrEmailExist = (req, res, next) => {
 
 module.exports.register = (req, res, next) => {
     if (req.body.username == undefined || req.body.email == undefined || res.locals.hash == undefined) {
-        res.status(400).send("Error: username or email or password is undefined");
+        res.status(400).json({
+            error: "Username or email or password is undefined"
+        });
         return;
     }
 
@@ -52,7 +54,9 @@ module.exports.register = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
     if (req.body.username == undefined || req.body.password == undefined) {
-        res.status(400).send("Error: username or password is undefined");
+        res.status(400).json({
+            error: "Username or password is undefined"
+        });
         return;
     }
 
@@ -68,11 +72,11 @@ module.exports.login = (req, res, next) => {
         } else {
             if (results.rows.length === 0) {
                 res.status(404).json({
-                    message: "User not found"
+                    error: "User not found"
                 });
             } else {
                 res.locals.hash = results.rows[0].password;
-                res.locals.userId = results.rows[0].member_id;
+                res.locals.memberId = results.rows[0].member_id;
                 next();
             }
         }
@@ -83,7 +87,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getMemberByAuthToken = (req, res, next) => {
     const data = {
-        member_id: res.locals.memberId
+        id: res.locals.memberId
     }
 
     const callback = (error, results, fields) => {
@@ -93,7 +97,7 @@ module.exports.getMemberByAuthToken = (req, res, next) => {
         } else {
             if (results.rows.length === 0) {
                 res.status(404).json({
-                    message: "User not found"
+                    error: "User not found"
                 });
             } else {
                 res.status(200).json(results.rows[0]);
@@ -101,5 +105,58 @@ module.exports.getMemberByAuthToken = (req, res, next) => {
         }
     }
 
-    model.selectMemberByAuthToken(data, callback);
+    model.selectMemberById(data, callback);
+}
+
+module.exports.getMemberById = (req, res, next) => {
+    if (isNaN(req.params.id)) {
+        res.status(400).json({
+            error: "Invalid member_id"
+        });
+        return;
+    }
+
+    const data = {
+        id: req.params.id
+    }
+
+    const callback = (error, results, fields) => {
+        if (error) {
+            console.error("Error getMemberById:", error);
+            res.status(500).json(error);
+        } else {
+            if (results.rows.length === 0) {
+                res.status(404).json({
+                    error: "User not found"
+                });
+            } else {
+                res.status(200).json(results.rows[0]);
+            }
+        }
+    }
+
+    model.selectMemberById(data, callback);
+}
+
+module.exports.getMemberByUsername = (req, res, next) => {
+    const data = {
+        username: req.params.username
+    }
+
+    const callback = (error, results, fields) => {
+        if (error) {
+            console.error("Error getMemberByUsername:", error);
+            res.status(500).json(error);
+        } else {
+            if (results.rows.length === 0) {
+                res.status(404).json({
+                    error: "User not found"
+                });
+            } else {
+                res.status(200).json(results.rows[0]);
+            }
+        }
+    }
+
+    model.selectMemberByUsername(data, callback);
 }

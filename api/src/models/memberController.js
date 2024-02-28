@@ -27,10 +27,19 @@ module.exports.selectByUsernameForLogin = (data, callback) => {
     pool.query(SQLSTATMENT, callback);
 }
 
-module.exports.selectMemberByAuthToken = (data, callback) => {
+module.exports.selectMemberById = (data, callback) => {
     const SQLSTATEMENT = `
         SELECT member_id, username, email, active_programme_id FROM member
-        WHERE member_id = ${data.member_id};
+        WHERE member_id = ${data.id};
+    `;
+
+    pool.query(SQLSTATEMENT, callback);
+}
+
+module.exports.selectMemberByUsername = (data, callback) => {
+    const SQLSTATEMENT = `
+        SELECT member_id, username, email, active_programme_id FROM member
+        WHERE username = '${data.username}';
     `;
 
     pool.query(SQLSTATEMENT, callback);

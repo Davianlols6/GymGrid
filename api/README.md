@@ -76,3 +76,48 @@ Status Code: 200 Ok
     "active_programme_id": null
 }
 ```
+
+**Error Handling:**
+- Returns 401 Unauthorized if token expired or not found
+- Returns 404 Not Found if member not found
+
+### GET /member/id/:id
+
+This endpoint displays a member's info by member id
+
+**Example Response:**
+
+Status Code: 200 Ok
+
+```json
+{
+    "member_id": 2,
+    "username": "test",
+    "email": "test@gmail.com",
+    "active_programme_id": null
+}
+```
+
+**Error Handling:**
+- Returns 400 Bad Request if member id is not a number
+- Returns 404 Not Found if member not found
+
+### GET /member/username/:username
+
+This endpoint displays a member's info by username
+
+**Example Response:**
+
+Status Code: 200 Ok
+
+```json
+{
+    "member_id": 2,
+    "username": "test",
+    "email": "test@gmail.com",
+    "active_programme_id": null
+}
+```
+
+**Error Handling:**
+- Returns 404 Not Found if member not found
