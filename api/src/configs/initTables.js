@@ -17,7 +17,8 @@ const SQLSTATEMENT = `
         username TEXT NOT NULL,
         email TEXT NOT NULL,
         password TEXT NOT NULL,
-        active_programme_id INT
+        active_programme_id INT,
+        admin BOOLEAN NOT NULL DEFAULT FALSE
     );
 
     CREATE TABLE weighttracker (
