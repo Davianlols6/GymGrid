@@ -2,9 +2,6 @@ const pool = require('../services/db');
 
 const SQLSTATEMENT = `
 
-SELECT member_id, username, email, active_programme_id FROM member
-WHERE username = 'test4';
-
 `;
 
 pool.query(SQLSTATEMENT, (error, results, fields) => {
