@@ -8,6 +8,6 @@ router.get('/auth', jwtMiddleware.verifyToken, memberController.getMemberByAuthT
 router.get('/id/:id', memberController.getMemberById);
 router.get('/username/:username', memberController.getMemberByUsername);
 router.put('/auth/username', jwtMiddleware.verifyToken, memberController.updateUsername);
-router.put('/active_programme/:id', jwtMiddleware.verifyToken, memberController.updateActiveProgramme);
+router.put('/auth/active_programme/:id', jwtMiddleware.verifyToken, memberController.updateActiveProgramme);
 
 module.exports = router;

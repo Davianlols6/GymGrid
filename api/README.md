@@ -121,3 +121,33 @@ Status Code: 200 Ok
 
 **Error Handling:**
 - Returns 404 Not Found if member not found
+
+### PUT /api/member/auth/username
+
+This endpoint updates the logged in member's username
+
+**Example Request Body:**
+
+Status Code: 200 Ok
+
+```json
+{
+    "username": "John Doe"
+}
+```
+
+**Error Handling:**
+- Returns 400 Bad Request if the request body is missing username
+- Returns 401 Unauthorized if token expired or not found
+- Returns 404 Not Found if member not found
+
+### PUT /api/member/auth/active_programme/:id
+
+This endpoint updates the logged in member's active programme
+
+Status Code: 200 Ok
+
+**Error Handling:**
+- Returns 400 Bad Request if programme id is not a number
+- Returns 401 Unauthorized if token expired or not found
+- Returns 404 Not Found if member not found
