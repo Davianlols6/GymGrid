@@ -44,3 +44,25 @@ module.exports.selectMemberByUsername = (data, callback) => {
 
     pool.query(SQLSTATEMENT, callback);
 }
+
+module.exports.updateUsername = (data, callback) => {
+    const SQLSTATEMENT = `
+        UPDATE member
+        SET username = '${data.username}'
+        WHERE member_id = ${data.id}
+        RETURNING username;
+    `;
+
+    pool.query(SQLSTATEMENT, callback);
+}
+
+module.exports.updateActiveProgramme = (data, callback) => {
+    const SQLSTATEMENT = `
+        UPDATE member
+        SET active_programme_id = ${data.new_active_programme_id}
+        WHERE member_id = ${data.id}
+        RETURNING active_programme_id;
+    `;
+
+    pool.query(SQLSTATEMENT, callback);
+}
