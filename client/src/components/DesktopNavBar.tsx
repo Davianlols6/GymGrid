@@ -28,25 +28,25 @@ export default function DesktopNavBar() {
     }, [])
 
     return (<>
-        <div className='mx-5 my-2'>
+        <div className='mx-5 my-2 hidden md:block'>
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <Link href="/home" legacyBehavior passHref>
+                        <Link href="/home">
                             <NavigationMenuLink className='text-lg font-bold font-sans'>
                                 GymGrid
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
+                        <Link href="/programme">
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Gym Programme
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
+                        <Link href="/profile">
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Profile
                             </NavigationMenuLink>
