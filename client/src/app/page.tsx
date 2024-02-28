@@ -98,7 +98,7 @@ export default function Home() {
       }),
     });
     if (response.status === 200) {
-      alert("User registered successfully");
+      push("/home");
     } else {
       const data = await response.json();
       setregisterAlertMessage(data.error);
@@ -128,7 +128,7 @@ export default function Home() {
       }),
     });
     if (response.status === 200) {
-      alert("User logged in successfully");
+      push("/home");
     } else {
       const data = await response.json();
       setloginAlertMessage(data.error);
