@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google"
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -11,8 +11,8 @@ export const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: "Login / Register - GymGrid",
-  description: "Login or register to GymGrid to start tracking your workouts and progress.",
+  title: "Home - GymGrid",
+  description: "GymGrid is a workout tracking app that helps you track your workouts and progress.",
 };
 
 export default function RootLayout({

@@ -15,7 +15,7 @@ module.exports.checkUsernameOrEmailExist = (req, res, next) => {
                 next();
             } else {
                 res.status(409).json({
-                    error: "Username or email already exists"
+                    error: "A user with that username or email already exists."
                 });
             }
         }
