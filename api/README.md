@@ -1,6 +1,6 @@
 ## Endpoints
 
-### POST /register
+### POST /api/register
 
 This endpoint registers a member. The token is stored in the client's cookies.
 
@@ -27,7 +27,7 @@ Status Code: 200 Ok
 **Error Handling:**
 - Returns 400 Bad Request if the request body is missing username, email or password
 
-### POST /login
+### POST /api/login
 
 This endpoint login a member. The token is stored in the client's cookies.
 
@@ -52,7 +52,7 @@ Status Code: 200 Ok
 - Returns 400 Bad Request if the request body is missing username or password 
 - Returns 401 Unauthorized if password is wrong
 
-### POST /logout
+### POST /api/logout
 
 This endpoint logs an member out by deleting the token stored on the client's end.
 
@@ -60,7 +60,7 @@ This endpoint logs an member out by deleting the token stored on the client's en
 
 Status Code: 204 No Content
 
-### GET /member/auth
+### GET /api/member/auth
 
 This endpoint displays the logged in member's info
 
@@ -81,7 +81,7 @@ Status Code: 200 Ok
 - Returns 401 Unauthorized if token expired or not found
 - Returns 404 Not Found if member not found
 
-### GET /member/id/:id
+### GET /api/member/id/:id
 
 This endpoint displays a member's info by member id
 
@@ -102,7 +102,7 @@ Status Code: 200 Ok
 - Returns 400 Bad Request if member id is not a number
 - Returns 404 Not Found if member not found
 
-### GET /member/username/:username
+### GET /api/member/username/:username
 
 This endpoint displays a member's info by username
 
