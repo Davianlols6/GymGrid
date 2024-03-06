@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const memberRoutes = require('../routes/memberRoutes');
+const programmeRoutes = require('../routes/programmeRoutes');
 
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
 const bcryptMiddleware = require('../middlewares/bcryptMiddleware');
@@ -12,5 +13,6 @@ router.post("/login", memberController.login, bcryptMiddleware.comparePassword, 
 router.post("/logout", (req, res) => {res.clearCookie('authToken'); res.send('Cookie has been removed');});
 
 router.use("/member", memberRoutes);
+router.use("/programme", programmeRoutes);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const model = require("../models/memberController.js");
+const model = require("../models/memberModel.js");
 
 module.exports.checkUsernameOrEmailExist = (req, res, next) => {
     const data = {
@@ -8,7 +8,7 @@ module.exports.checkUsernameOrEmailExist = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error checkUsernameOrEmailExist:", error);
+            console.error("Error checkUsernameOrEmailExist: ", error);
             res.status(500).json(error);
         } else {
             if (results.rows.length === 0) {
@@ -40,7 +40,7 @@ module.exports.register = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error register:", error);
+            console.error("Error register: ", error);
             res.status(500).json(error);
         } else {
             res.locals.memberId = results.rows[0].member_id;
@@ -67,7 +67,7 @@ module.exports.login = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error login:", error);
+            console.error("Error login: ", error);
             res.status(500).json(error);
         } else {
             if (results.rows.length === 0) {
@@ -92,7 +92,7 @@ module.exports.getMemberByAuthToken = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error getMemberByAuthToken:", error);
+            console.error("Error getMemberByAuthToken: ", error);
             res.status(500).json(error);
         } else {
             if (results.rows.length === 0) {
@@ -122,7 +122,7 @@ module.exports.getMemberById = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error getMemberById:", error);
+            console.error("Error getMemberById: ", error);
             res.status(500).json(error);
         } else {
             if (results.rows.length === 0) {
@@ -145,7 +145,7 @@ module.exports.getMemberByUsername = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error getMemberByUsername:", error);
+            console.error("Error getMemberByUsername: ", error);
             res.status(500).json(error);
         } else {
             if (results.rows.length === 0) {
@@ -176,7 +176,7 @@ module.exports.updateUsername = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error updateUsername:", error);
+            console.error("Error updateUsername: ", error);
             res.status(500).json(error);
         } else if (results.rowCount === 0) {
             res.status(404).json({
@@ -205,7 +205,7 @@ module.exports.updateActiveProgramme = (req, res, next) => {
 
     const callback = (error, results, fields) => {
         if (error) {
-            console.error("Error updateActiveProgramme:", error);
+            console.error("Error updateActiveProgramme: ", error);
             res.status(500).json(error);
         } else if (results.rowCount === 0) {
             res.status(404).json({

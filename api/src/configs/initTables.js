@@ -72,6 +72,8 @@ const SQLSTATEMENT = `
         exercise1_id INT NOT NULL,
         exercise2_id INT NOT NULL
     );
+
+    INSERT INTO member (username, email, password, admin) VALUES ('admin', 'admin@gmail.com', '$2b$10$jxZJdMlC1u9jxi75Hj2n0uEd/aufa4d0dxcwMss4ZlZhBR8ql.otO', TRUE);
 `;
 
 pool.query(SQLSTATEMENT, (error, results, fields) => {
