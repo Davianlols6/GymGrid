@@ -8,7 +8,7 @@ export default function MobileNavBar({ page }: { page: string }) {
     const [currentPage, setCurrentPage] = useState(page);
 
     return (<>
-        <div className='fixed bottom-0 left-0 z-50 w-full h-12 text-center md:hidden border-t-2'>
+        <div className='fixed bottom-0 left-0 z-50 w-full h-14 text-center md:hidden border-t-2 dark:bg-gray-900 bg-white'>
             <div className="flex items-center justify-center h-full">
                 <div className='w-full'>
                     <div className="grid grid-cols-3 gap-4 items-center justify-center">
