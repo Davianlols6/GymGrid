@@ -191,9 +191,9 @@ module.exports.updateUsername = (req, res, next) => {
 }
 
 module.exports.updateActiveProgramme = (req, res, next) => {
-    if (isNaN(req.params.id)) {
+    if (isNaN(req.params.id) && req.params.id !== "null") {
         res.status(400).json({
-            error: "Invalid member_id"
+            error: "Invalid programme_id"
         });
         return;
     }
